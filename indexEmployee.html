@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FedEx Flexible Worker - Employee Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .header {
+            background-color: #4d148c;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .user-icons {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .alert-icon, .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .alert-icon {
+            background-color: #ff6600;
+        }
+        .user-icon {
+            background-color: white;
+            color: #4d148c;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: #4d148c;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background-color: #f0f0f0;
+        }
+        .dashboard {
+            display: flex;
+            padding: 20px;
+            gap: 20px;
+        }
+        .main-content {
+            flex: 2;
+        }
+        .sidebar {
+            flex: 1;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .job-item {
+            margin-bottom: 20px;
+        }
+        .job-item h3 {
+            margin: 0 0 5px 0;
+        }
+        .job-item p {
+            margin: 0;
+            color: #666;
+        }
+        .btn {
+            background-color: #4d148c;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .btn-edit {
+            background-color: #ff6600;
+        }
+        .filter-option {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        .filter-option label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .filter-option select, .filter-option input {
+            width: 100%;
+            max-width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .alert-item {
+            margin-bottom: 15px;
+        }
+        .alert-item strong {
+            color: #ff6600;
+        }
+        .map-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #4d148c;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .search-bar {
+            display: none;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .search-button {
+            background-color: #4d148c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>FedEx Flexible Worker</h1>
+        <div class="user-icons">
+            <div class="alert-icon">2</div>
+            <div class="user-icon" onclick="toggleDropdown()">👤</div>
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#">Profile</a>
+                <a href="#">Settings</a>
+                <a href="#">Log Out</a>
+            </div>
+        </div>
+    </header>
+    <div class="dashboard">
+        <div class="main-content">
+            <button class="search-button" onclick="toggleSearchBar()">Search Jobs</button>
+            <div class="search-bar" id="search-bar">
+                <input type="text" id="search-filter" placeholder="Search jobs...">
+            </div>
+            <div class="card">
+                <h2>My Claimed Opportunities</h2>
+                <div class="job-item claimed" data-time="14:00">
+                    <h3>Sorter - East Facility</h3>
+                    <p>June 18, 2024 | 2:00 PM - 10:00 PM</p>
+                    <p>789 Industrial Pkwy, Easttown</p>
+                    <button class="btn btn-edit">Edit</button>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Available Work Opportunities</h2>
+                <div class="job-item unclaimed" data-time="08:00">
+                    <h3>Package Handler - Downtown Hub</h3>
+                    <p>June 15, 2024 | 8:00 AM - 4:00 PM</p>
+                    <p>123 Main St, Springfield</p>
+                    <button class="btn">Claim</button>
+                </div>
+                <div class="job-item unclaimed" data-time="09:00">
+                    <h3>Driver Assistant - North Station</h3>
+                    <p>June 20, 2024 | 9:00 AM - 5:00 PM</p>
+                    <p>456 Oak Rd, Northville</p>
+                    <button class="btn">Claim</button>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="card">
+                <h2>Filters</h2>
+                <p>Jobs are auto-filtered based on your:</p>
+                <ul>
+                    <li>Training/certifications</li>
+                    <li>Local area locations</li>
+                </ul>
+                <h3>Additional Filters:</h3>
+                <div class="filter-option">
+                    <label for="location-filter">Location</label>
+                    <select id="location-filter">
+                        <option value="">Select local area location</option>
+                        <option value="downtown">Downtown</option>
+                        <option value="north">North Station</option>
+                        <option value="east">East Facility</option>
+                    </select>
+                </div>
+                <div class="filter-option">
+                    <label for="date-filter">Date</label>
+                    <input type="date" id="date-filter">
+                </div>
+                <div class="filter-option">
+                    <label for="time-filter">Time of Day</label>
+                    <input type="time" id="time-filter">
+                </div>
+                <div class="filter-option">
+                    <label for="status-filter">Job Status</label>
+                    <select id="status-filter">
+                        <option value="all">All</option>
+                        <option value="claimed">Claimed</option>
+                        <option value="unclaimed">Unclaimed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Alerts</h2>
+                <div class="alert-item">
+                    <strong>● Manager changed parameters</strong>
+                    <p>Sorter - East Facility shift updated</p>
+                </div>
+                <div class="alert-item">
+                    <strong>● Report-to-work reminder</strong>
+                    <p>Sorter shift starts in 2 hours</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="map-icon" onclick="openGoogleMaps()">🗺️</div>
+    <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        }
+        function toggleSearchBar() {
+            const searchBar = document.getElementById('search-bar');
+            searchBar.style.display = searchBar.style.display === 'block' ? 'none' : 'block';
+        }
+        document.addEventListener('click', function(event) {
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const userIcon = document.querySelector('.user-icon');
+            if (!userIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function() {
+                alert('Action: ' + this.textContent + '\nThis feature is not implemented in this demo.');
+            });
+        });
+        document.getElementById('location-filter').addEventListener('change', function() {
+            alert('Filter applied: ' + this.value + '\nThis feature is not fully implemented in this demo.');
+        });
+        document.getElementById('date-filter').addEventListener('change', function() {
+            alert('Date filter applied: ' + this.value + '\nThis feature is not fully implemented in this demo.');
+        });
+        document.getElementById('time-filter').addEventListener('change', function() {
+            const selectedTime = this.value;
+            document.querySelectorAll('.job-item').forEach(item => {
+                const jobTime = item.getAttribute('data-time');
+                if (jobTime >= selectedTime) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            alert('Time filter applied: ' + selectedTime + '\nThis feature is not fully implemented in this demo.');
+        });
+        document.getElementById('status-filter').addEventListener('change', function() {
+            const selectedStatus = this.value;
+            document.querySelectorAll('.job-item').forEach(item => {
+                if (selectedStatus === 'all') {
+                    item.style.display = 'block';
+                } else if (item.classList.contains(selectedStatus)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            alert('Status filter applied: ' + selectedStatus + '\nThis feature is not fully implemented in this demo.');
+        });
+        document.getElementById('search-filter').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            document.querySelectorAll('.job-item').forEach(item => {
+                const jobTitle = item.querySelector('h3').textContent.toLowerCase();
+                const jobDescription = item.querySelector('p').textContent.toLowerCase();
+                if (jobTitle.includes(searchTerm) || jobDescription.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+        function openGoogleMaps() {
+            // You can customize the location or add parameters as needed
+            const mapUrl = 'https://www.google.com/maps';
+            window.open(mapUrl, '_blank');
+}
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const logoutLink = document.querySelector('#dropdown-menu a[href="#"]:last-child');
+        logoutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+        });
+    });
+
+    function logout() {
+        // Here you would typically clear any session data or tokens
+        // For this demo, we'll simply redirect to the login page
+        window.location.href = 'index.html';
+    }
+    </script>
+</body>
+</html>
