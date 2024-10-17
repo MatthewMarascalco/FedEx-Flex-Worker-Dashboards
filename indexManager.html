@@ -114,42 +114,46 @@
 
     <div id="job-form" class="form-container hidden">
         <h2>Create/Edit Job Opportunity</h2>
-        <div class="form-field">
-            <label for="jobTitle">Job Title:</label>
-            <input type="text" id="jobTitle" required>
-        </div>
-        <div class="form-field">
-            <label for="jobDescription">Job Description:</label>
-            <textarea id="jobDescription" required></textarea>
-        </div>
-        <div class="form-field">
-            <label>Required Certifications:</label>
-            <div>
-                <input type="checkbox" id="drivers-license"> <label for="drivers-license">Driver's License</label>
+        <div class="form-fields">
+            <div class="form-field">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" required>
             </div>
-            <div>
-                <input type="checkbox" id="forklift-certified"> <label for="forklift-certified">Forklift Certified</label>
+            <div class="form-field">
+                <label for="jobDescription">Job Description:</label>
+                <textarea id="jobDescription" required></textarea>
+            </div>
+            <div class="form-field">
+                <label>Required Certifications:</label>
+                <div>
+                    <input type="checkbox" id="drivers-license"> <label for="drivers-license">Driver's License</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="forklift-certified"> <label for="forklift-certified">Forklift Certified</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-field">
+                <label for="startTime">Start Time:</label>
+                <input type="time" id="startTime" required>
+            </div>
+            <div class="form-field">
+                <label for="endTime">End Time:</label>
+                <input type="time" id="endTime" required>
+            </div>
+            <div class="form-field">
+                <label for="location">Location:</label>
+                <input type="text" id="location" required>
             </div>
         </div>
-        <div class="form-field">
-            <label for="date">Date:</label>
-            <input type="date" id="date" required>
+        <div class="form-actions">
+            <button class="btn save-button" onclick="saveJob()">Save</button>
+            <button class="btn publish-button" onclick="publishJob()">Publish</button>
+            <button class="btn" onclick="toggleForm()">Cancel</button>
         </div>
-        <div class="form-field">
-            <label for="startTime">Start Time:</label>
-            <input type="time" id="startTime" required>
-        </div>
-        <div class="form-field">
-            <label for="endTime">End Time:</label>
-            <input type="time" id="endTime" required>
-        </div>
-        <div class="form-field">
-            <label for="location">Location:</label>
-            <input type="text" id="location" required>
-        </div>
-        <button class="btn save-button" onclick="saveJob()">Save</button>
-        <button class="btn publish-button" onclick="publishJob()">Publish</button>
-        <button class="btn" onclick="toggleForm()">Cancel</button>
     </div>
 
     <div id="report-popup" class="popup">
