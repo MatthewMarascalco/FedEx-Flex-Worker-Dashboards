@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FedEx Flex - Manager Settings</title>
+    <link rel="stylesheet" href="profile-settings-styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>FedEx Flexible Worker - Manager Settings</h1>
+        <div class="user-icons">
+            <div class="user-icon" onclick="toggleDropdown()">👤</div>
+            <div id="dropdown-menu" class="dropdown-menu">
+                <a href="indexManager.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="settings.html">Settings</a>
+                <a href="index.html" onclick="logout()">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="settings-container">
+        <h2>Account Settings</h2>
+        <form class="settings-form">
+            <div class="form-field">
+                <label for="email-notifications">
+                    <input type="checkbox" id="email-notifications" name="email-notifications" checked>
+                    Email Notifications
+                </label>
+            </div>
+            <div class="form-field">
+                <label for="sms-notifications">
+                    <input type="checkbox" id="sms-notifications" name="sms-notifications">
+                    SMS Notifications
+                </label>
+            </div>
+            <div class="form-field">
+                <label for="language">Language</label>
+                <select id="language" name="language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="timezone">Time Zone</label>
+                <select id="timezone" name="timezone">
+                    <option value="est">Eastern Time</option>
+                    <option value="cst">Central Time</option>
+                    <option value="mst">Mountain Time</option>
+                    <option value="pst">Pacific Time</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Save Changes</button>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

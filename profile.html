@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FedEx Flex - Manager Profile</title>
+    <link rel="stylesheet" href="profile-settings-styles.css">
+</head>
+<body>
+    <header class="header">
+        <h1>FedEx Flexible Worker - Manager Profile</h1>
+        <div class="user-icons">
+            <div class="user-icon" onclick="toggleDropdown()">👤</div>
+            <div id="dropdown-menu" class="dropdown-menu">
+                <a href="indexManager.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="settings.html">Settings</a>
+                <a href="index.html" onclick="logout()">Log Out</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-container">
+        <h2>Manager Profile</h2>
+        <div class="profile-info">
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Employee ID:</strong> FDX123456</p>
+            <p><strong>Email:</strong> john.doe@fedex.com</p>
+            <p><strong>Position:</strong> Regional Manager</p>
+            <p><strong>Department:</strong> Flexible Workforce</p>
+            <p><strong>Location:</strong> Springfield Hub</p>
+            <p><strong>Years of Service:</strong> 5</p>
+            <p><strong>Last Login:</strong> May 15, 2024, 09:30 AM</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
