@@ -11,8 +11,7 @@
         <h1>FedEx Flexible Worker - Manager Dashboard</h1>
         <div class="user-icons">
             <div class="alert-icon" onclick="toggleNotifications()">
-                <span class="icon">🔔</span>
-                <span class="count">2</span>
+                🔔 <span class="count">2</span>
             </div>
             <div id="notification-dropdown" class="notification-dropdown">
                 <div class="notification-item">
@@ -23,147 +22,171 @@
                     <h4>Shift Change Request</h4>
                     <p>Shift change request from John Doe</p>
                 </div>
-                <div class="notification-item">
-                    <h4>Performance Report</h4>
-                    <p>Performance report ready for review</p>
-                </div>
             </div>
             <div class="user-icon" onclick="toggleDropdown()">👤</div>
-            <div class="dropdown-menu" id="dropdown-menu">
-                <a href="#">Profile</a>
-                <a href="#">Settings</a>
-                <a href="#">Log Out</a>
+            <div id="dropdown-menu" class="dropdown-menu">
+                <a href="indexManager.html">Dashboard</a>
+                <a href="profile.html">Profile</a>
+                <a href="settings.html">Settings</a>
+                <a href="index.html" onclick="logout()">Log Out</a>
             </div>
         </div>
     </header>
 
     <div class="dashboard">
-        <div class="main-content">
-            <button class="btn" onclick="toggleForm()">Create Job Opportunity</button>
-            <div class="card">
-                <h2>
-                    Work Opportunities Dashboard
-                    <div>
-                        <button class="btn" onclick="toggleFilter()">Filter Jobs</button>
-                        <button class="btn btn-edit" onclick="toggleEditing()">Edit Opportunities</button>
-                        <button class="btn hidden" id="save-btn" onclick="saveChanges()">Save</button>
-                    </div>
-                </h2>
+        <main class="main-content">
+            <section class="card">
+                <h2>Work Opportunities Dashboard</h2>
+                <div class="button-group">
+                    <button class="btn" onclick="toggleForm()">Create Job Opportunity</button>
+                    <button class="btn btn-edit" onclick="toggleEditing()">Edit Opportunities</button>
+                </div>
                 <div id="job-list">
-                <div class="job-item">
-                    <h3>Sorter - East Facility</h3>
-                    <p>June 18, 2024 | 2:00 PM - 10:00 PM</p>
-                    <p>789 Industrial Pkwy, Easttown</p>
+                    <!-- Job items will be dynamically added here -->
                 </div>
-                <div class="job-item">
-                    <h3>Package Handler - Downtown Hub</h3>
-                    <p>June 15, 2024 | 8:00 AM - 4:00 PM</p>
-                    <p>123 Main St, Springfield</p>
-                </div>
-                <div class="job-item">
-                    <h3>Driver Assistant - North Station</h3>
-                    <p>June 20, 2024 | 9:00 AM - 5:00 PM</p>
-                    <p>456 Oak Rd, Northville</p>
-                </div>
-                </div>
-            </div>
-            <div class="card">
+            </section>
+
+            <section class="card">
                 <h2>Claimed Work Opportunities</h2>
                 <div id="claimed-jobs-list">
-                    <div class="claimed-job-item">
-                        <h3>Sorter - East Facility</h3>
-                        <p>June 18, 2024 | 2:00 PM - 10:00 PM</p>
-                        <p>789 Industrial Pkwy, Easttown</p>
-                        <button class="btn report-btn" onclick="showReport('job1')">View Report</button>
-                    </div>
-                    <div class="claimed-job-item">
-                        <h3>Package Handler - Downtown Hub</h3>
-                        <p>June 15, 2024 | 8:00 AM - 4:00 PM</p>
-                        <p>123 Main St, Springfield</p>
-                        <button class="btn report-btn" onclick="showReport('job2')">View Report</button>
-                    </div>
-                    <div class="claimed-job-item">
-                        <h3>Driver Assistant - North Station</h3>
-                        <p>June 20, 2024 | 9:00 AM - 5:00 PM</p>
-                        <p>456 Oak Rd, Northville</p>
-                        <button class="btn report-btn" onclick="showReport('job3')">View Report</button>
-                    </div>
+                    <!-- Claimed job items will be dynamically added here -->
                 </div>
-            </div>
-            
-            <div class="side-panel" id="report-panel">
-                <span class="close-panel" onclick="closeReport()">&times;</span>
-                <h2>Job Report</h2>
-                <div id="report-content"></div>
-            </div>
+            </section>
+        </main>
 
-        
+        <aside class="sidebar">
+            <section class="section card manager-alerts">
+                <h2>Manager Alerts</h2>
+                <div class="alert-item alert-urgent" data-alert-type="unclaimed-24">
+                    <span>Unclaimed Jobs (24 hours)</span>
+                    <span class="alert-count" onclick="showAlertDetails('unclaimed-24')">2</span>
+                </div>
+                <div class="alert-item alert-warning" data-alert-type="unclaimed-48">
+                    <span>Unclaimed Jobs (48 hours)</span>
+                    <span class="alert-count" onclick="showAlertDetails('unclaimed-48')">2</span>
+                </div>
+                <div class="alert-item" data-alert-type="shifts-coverage">
+                    <span>Shifts Needing Coverage</span>
+                    <span class="alert-count" onclick="showAlertDetails('shifts-coverage')">3</span>
+                </div>
+                <div class="alert-item" data-alert-type="time-off">
+                    <span>Pending Time-Off Requests</span>
+                    <span class="alert-count" onclick="showAlertDetails('time-off')">5</span>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Filters</h2>
+                <div class="filter-option">
+                    <label for="opportunity-type">Opportunity Type</label>
+                    <select id="opportunity-type">
+                        <option value="both">Both</option>
+                        <option value="work">Work Opportunities</option>
+                        <option value="claimed">Claimed Work Opportunities</option>
+                    </select>
+                </div>
+                <div class="filter-option">
+                    <label for="location-filter">Location</label>
+                    <select id="location-filter">
+                        <option value="">All Locations</option>
+                        <option value="downtown">Downtown</option>
+                        <option value="north-station">North Station</option>
+                        <option value="east-facility">East Facility</option>
+                    </select>
+                </div>
+                <div class="filter-option">
+                    <label for="date-filter">Date</label>
+                    <input type="date" id="date-filter">
+                </div>
+                <div class="filter-option">
+                    <label for="time-filter">Time of Day</label>
+                    <select id="time-filter">
+                        <option value="">All Times</option>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening">Evening</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="applyFilters()">Apply Filters</button>
+            </section>
+        </aside>
+    </div>
+
+    <div id="job-form" class="form-container hidden">
+        <h2>Create/Edit Job Opportunity</h2>
+        <div class="form-field">
+            <label for="jobTitle">Job Title:</label>
+            <input type="text" id="jobTitle" required>
+        </div>
+        <div class="form-field">
+            <label for="jobDescription">Job Description:</label>
+            <textarea id="jobDescription" required></textarea>
+        </div>
+        <div class="form-field">
+            <label>Required Certifications:</label>
+            <div>
+                <input type="checkbox" id="drivers-license"> <label for="drivers-license">Driver's License</label>
+            </div>
+            <div>
+                <input type="checkbox" id="forklift-certified"> <label for="forklift-certified">Forklift Certified</label>
+            </div>
+        </div>
+        <div class="form-field">
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+        </div>
+        <div class="form-field">
+            <label for="startTime">Start Time:</label>
+            <input type="time" id="startTime" required>
+        </div>
+        <div class="form-field">
+            <label for="endTime">End Time:</label>
+            <input type="time" id="endTime" required>
+        </div>
+        <div class="form-field">
+            <label for="location">Location:</label>
+            <input type="text" id="location" required>
+        </div>
+        <button class="btn save-button" onclick="saveJob()">Save</button>
+        <button class="btn publish-button" onclick="publishJob()">Publish</button>
+        <button class="btn" onclick="toggleForm()">Cancel</button>
+    </div>
+
+    <div id="report-popup" class="popup">
+        <span class="popup-close" onclick="closeReport()">&times;</span>
+        <h2>Job Report</h2>
+        <div id="report-content"></div>
     </div>
 
     <div class="map-icon" onclick="openGoogleMaps()">🗺️</div>
 
-    <div class="form-container hidden" id="job-form">
-        <h2>Create/Edit Job Opportunity</h2>
-        <div class="form-field">
-            <label for="jobTitle">Job Title:</label>
-            <input type="text" id="jobTitle" name="jobTitle">
-        </div>
-        <div class="form-field">
-            <label for="jobDescription">Job Description:</label>
-            <textarea id="jobDescription" name="jobDescription"></textarea>
-        </div>
-        <div class="form-field">
-            <label>Required Certifications:</label>
-            <select multiple>
-                <option>Driver's License</option>
-                <option>Forklift Certified</option>
-            </select>
-        </div>
-        <div class="form-field">
-            <label>Date and Time:</label>
-            <input type="date" id="date" name="date">
-            <input type="time" id="startTime" name="startTime">
-            <input type="time" id="endTime" name="endTime">
-        </div>
-        <div class="form-field">
-            <label for="location">Location:</label>
-            <input type="text" id="location" name="location" placeholder="Select Location">
-        </div>
-        <button class="button save-button" onclick="saveJob()">Save</button>
-        <button class="button publish-button" onclick="publishJob()">Publish</button>
-    </div>
-    <div class="side-panel" id="filter-panel">
-        <span class="close-panel" onclick="toggleFilter()">&times;</span>
-        <h2>Filters</h2>
-        <div class="filter-option">
-            <label for="location-filter">Location</label>
-            <select id="location-filter">
-                <option value="">Select local area location</option>
-                <option value="downtown">Downtown</option>
-                <option value="north">North Station</option>
-                <option value="east">East Facility</option>
-            </select>
-        </div>
-        <div class="filter-option">
-            <label for="date-filter">Date</label>
-            <input type="date" id="date-filter">
-        </div>
-        <div class="filter-option">
-            <label for="time-filter">Time of Day</label>
-            <input type="time" id="time-filter">
-        </div>
-        <div class="filter-option">
-            <label for="status-filter">Job Status</label>
-            <select id="status-filter">
-                <option value="all">All</option>
-                <option value="claimed">Claimed</option>
-                <option value="unclaimed">Unclaimed</option>
-            </select>
-        </div>
-        <button class="btn" onclick="applyFilters()">Apply Filters</button>
+    <div id="alert-details-popup" class="popup">
+        <span class="popup-close" onclick="closeAlertDetails()">&times;</span>
+        <h2 id="alert-details-title">Alert Details</h2>
+        <div id="alert-details-content"></div>
     </div>
 
+    <template id="job-item-template">
+  <div class="job-item">
+    <div class="job-main-info">
+      <h3 class="job-title"></h3>
+      <p class="job-description"></p>
+      <p class="job-date-time"></p>
+      <p class="job-location"></p>
+      <p class="job-certifications"></p>
+    </div>
+    <div class="job-additional-info">
+      <p class="job-urgency"></p>
+      <p class="job-applicants"></p>
+      <p class="job-labor-hours"></p>
+      <p class="job-workers-assigned"></p>
+      <p class="job-completion-status"></p>
+      <p class="job-weather-forecast"></p>
+    </div>
+    <div class="job-actions"></div>
+  </div>
+</template>
+
     <script src="script.js"></script>
-    
 </body>
 </html>
