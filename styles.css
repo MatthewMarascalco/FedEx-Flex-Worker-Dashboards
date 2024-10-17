@@ -319,18 +319,37 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     z-index: 1001;
-    width: 80%;
+    width: 90%;
     max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .form-container h2 {
     margin-top: 0;
     margin-bottom: 20px;
     color: #4d148c;
+}
+
+.form-fields {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid var(--medium-gray);
 }
 
 .form-field {
@@ -538,12 +557,18 @@ body {
 }
 
 @media (max-width: 768px) {
-    .dashboard {
-        grid-template-columns: 1fr;
-    }
-
     .form-container {
-        width: 90%;
+        width: 95%;
+        padding: 15px;
+    }
+}
+
+@media (max-height: 600px) {
+    .form-container {
+        top: 0;
+        transform: translate(-50%, 0);
+        max-height: 100vh;
+        border-radius: 0;
     }
 }
 .form-field textarea {
