@@ -3,90 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FedEx Flex - Login</title>
+    <title>FedEx Flex Login</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        :root {
+            --fedex-purple: #4D148C;
+            --fedex-orange: #FF6600;
+            --light-gray: #F5F5F5;
+            --medium-gray: #E0E0E0;
+            --dark-gray: #333333;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(to right, var(--fedex-purple), #3A1068);
         }
+
         .login-container {
-            background-color: white;
+            background: white;
             padding: 2rem;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            width: 100%;
             max-width: 400px;
-            width: 100%;
+            text-align: center;
         }
+
         h1 {
-            color: #4d148c;
-            margin-bottom: 1.5rem;
-            font-size: 24px;
+            color: var(--fedex-purple);
+            margin-bottom: 2rem;
+            font-size: 2rem;
         }
-        input, select, button {
-            display: block;
-            width: 100%;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        button {
-            background-color: #4d148c;
+
+        .login-button {
+            background-color: var(--fedex-purple);
             color: white;
             border: none;
-            padding: 0.75rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+            font-weight: 600;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
         }
-        button:hover {
-            background-color: #3a0f6a;
-        }
-        select {
-            appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
-            background-repeat: no-repeat;
-            background-position: right 0.7em top 50%;
-            background-size: 0.65em auto;
+
+        .login-button:hover {
+            background-color: #3A1068;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
     <div class="login-container">
         <h1>FedEx Flex Login</h1>
-        <form id="loginForm">
-            <input type="text" placeholder="Username" required>
-            <input type="password" placeholder="Password" required>
-            <select id="userType" required>
-                <option value="">Select User Type</option>
-                <option value="employee">Employee</option>
-                <option value="manager">Manager</option>
-            </select>
-            <button type="submit">Login</button>
-        </form>
+        <button class="login-button" onclick="window.location.href='indexManager.html'">Login</button>
     </div>
-
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const userType = document.getElementById('userType').value;
-            if (userType === 'employee') {
-                window.location.href = 'indexEmployee.html'; // Redirect to employee dashboard
-            } else if (userType === 'manager') {
-                window.location.href = 'indexManager.html'; // Redirect to manager dashboard
-            } else {
-                alert('Please select a user type.');
-            }
-        });
-    </script>
 </body>
 </html>
