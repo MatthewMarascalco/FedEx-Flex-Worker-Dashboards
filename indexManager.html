@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -269,5 +268,15 @@
             </div>
         </div>
     </template>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const role = urlParams.get('role');
+            if (role !== 'manager') {
+                alert('This is the manager dashboard. Redirecting...');
+                window.location.href = 'index.html';
+            }
+        });
+    </script>
 </body>
 </html>
