@@ -40,16 +40,8 @@ function toggleJobClaim(jobId) {
     const job = jobOpportunities.find(j => j.id === jobId);
     if (job) {
         job.claimed = !job.claimed;
-        updateNotificationCount();
         populateJobs();
     }
-}
-
-// Function to update notification count
-function updateNotificationCount() {
-    const countElement = document.querySelector('.alert-icon .count');
-    const unclaimedJobs = jobOpportunities.filter(job => !job.claimed).length;
-    countElement.textContent = unclaimedJobs;
 }
 
 // Function to toggle notifications dropdown
@@ -156,6 +148,9 @@ function searchJobs(searchTerm = "") {
 
 // Initialize the dashboard when the page loads
 document.addEventListener('DOMContentLoaded', function() {
-    updateNotificationCount();
+    const countElement = document.querySelector('.alert-icon .count');
+    countElement.textContent = '2';
+    countElement.style.display = 'block';
+    
     populateJobs();
 });
