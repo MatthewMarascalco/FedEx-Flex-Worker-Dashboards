@@ -3,7 +3,7 @@
 const jobOpportunities = [
     { 
         id: 'job2', 
-        title: 'Package Handler - Downtown Hub',
+        title: 'Package Sorter - Downtown Hub',
         date: 'June 15, 2024',
         time: '8:00 AM - 4:00 PM',
         totalPositions: 10,
@@ -11,7 +11,7 @@ const jobOpportunities = [
     },
     { 
         id: 'job1', 
-        title: 'Sorter - East Facility',
+        title: 'Sorter - North Station',
         date: 'June 18, 2024',
         time: '2:00 PM - 10:00 PM',
         totalPositions: 15,
@@ -610,7 +610,12 @@ const reportData = {
             { name: 'Albert Moe', phone: '(662) 555-5555', email: 'am124@example.com', punctuality: 90, attendance: 90, comments: '' },
             { name: 'Billy Bob', phone: '(662) 555-5555', email: 'bb@example.com', punctuality: 89, attendance: 89, comments: '' },
             { name: 'Joe Moore', phone: '(662) 555-5555', email: 'joeamoore@example.com', punctuality: 99, attendance: 99, comments: '' },
-            { name: 'Clyde Weber', phone: '(662) 555-5555', email: 'clyde@example.com', punctuality: 100, attendance: 100, comments: '' }
+            { name: 'Clyde Weber', phone: '(662) 555-5555', email: 'clyde@example.com', punctuality: 100, attendance: 100, comments: '' },
+            { name: 'Sarah Johnson', phone: '(662) 555-5555', email: 'sarahj@example.com', punctuality: 95, attendance: 95, comments: '' },
+            { name: 'Mike Wilson', phone: '(662) 555-5555', email: 'mikew@example.com', punctuality: 93, attendance: 93, comments: '' },
+            { name: 'Lisa Brown', phone: '(662) 555-5555', email: 'lisab@example.com', punctuality: 97, attendance: 97, comments: '' },
+            { name: 'Tom Davis', phone: '(662) 555-5555', email: 'tomd@example.com', punctuality: 94, attendance: 94, comments: '' },
+            { name: 'Emma White', phone: '(662) 555-5555', email: 'emmaw@example.com', punctuality: 96, attendance: 96, comments: '' }
         ]
     },
     'job5': {  // Changed from 'job2' to 'job5'
@@ -621,7 +626,13 @@ const reportData = {
         total: 12,
         employees: [
             { name: 'Alice Johnson', phone: '(662) 555-5556', email: 'alice.j@example.com', punctuality: 95, attendance: 97, comments: 'Fast learner' },
-            { name: 'Bob Smith', phone: '(662) 555-5557', email: 'bob.smith@example.org', punctuality: 92, attendance: 94, comments: 'Team player' }
+            { name: 'Bob Smith', phone: '(662) 555-5557', email: 'bob.smith@example.org', punctuality: 92, attendance: 94, comments: 'Team player' },
+            { name: 'Carol White', phone: '(662) 555-5558', email: 'carol.w@example.com', punctuality: 96, attendance: 95, comments: 'Detail oriented' },
+            { name: 'David Brown', phone: '(662) 555-5559', email: 'david.b@example.com', punctuality: 93, attendance: 96, comments: 'Hard worker' },
+            { name: 'Eva Green', phone: '(662) 555-5560', email: 'eva.g@example.com', punctuality: 97, attendance: 98, comments: 'Great attitude' },
+            { name: 'Frank Miller', phone: '(662) 555-5561', email: 'frank.m@example.com', punctuality: 94, attendance: 95, comments: 'Reliable' },
+            { name: 'Grace Lee', phone: '(662) 555-5562', email: 'grace.l@example.com', punctuality: 98, attendance: 97, comments: 'Team player' },
+            { name: 'Henry Wilson', phone: '(662) 555-5563', email: 'henry.w@example.com', punctuality: 95, attendance: 96, comments: 'Efficient' }
         ]
     }
 };
