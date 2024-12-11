@@ -1,7 +1,7 @@
 const jobOpportunities = [
-    { id: 'job1', title: 'Package Handler - Downtown Hub', description: 'Handle and sort packages', date: '2024-06-15', time: '8:00 AM - 4:00 PM', location: '123 Main St, Springfield', claimed: false },
-    { id: 'job2', title: 'Driver Assistant - North Station', description: 'Assist drivers with deliveries', date: '2024-06-20', time: '9:00 AM - 5:00 PM', location: '456 Oak Rd, Northville', claimed: false },
-    { id: 'job3', title: 'Sorter - East Facility', description: 'Sort packages for efficient delivery', date: '2024-06-18', time: '2:00 PM - 10:00 PM', location: '789 Industrial Pkwy, Easttown', claimed: true }
+    { id: 'job1', title: 'Package Handler - Downtown Hub', description: 'Handle and sort packages', date: '2024-06-15', time: '8:00 AM - 4:00 PM', location: '123 Main St, Springfield, IL', claimed: false },
+    { id: 'job2', title: 'Driver Assistant - North Station', description: 'Assist drivers with deliveries', date: '2024-06-20', time: '9:00 AM - 5:00 PM', location: '456 Oak Rd, Northville, IL', claimed: false },
+    { id: 'job3', title: 'Sorter - East Facility', description: 'Sort packages for efficient delivery', date: '2024-06-18', time: '2:00 PM - 10:00 PM', location: '789 Industrial Pkwy, Easttown, IL', claimed: true }
 ];
 
 // Function to populate job lists
@@ -29,7 +29,7 @@ function createJobElement(job) {
     jobElement.innerHTML = `
         <h3>${job.title}</h3>
         <p>${job.date} | ${job.time}</p>
-        <p>${job.location}</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(job.location)}" target="_blank">${job.location}</a></p>
         <button onclick="toggleJobClaim('${job.id}')">${job.claimed ? 'Release' : 'Claim'}</button>
     `;
     return jobElement;
